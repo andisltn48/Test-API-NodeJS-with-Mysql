@@ -7,4 +7,5 @@ module.exports = function (app) {
     app.route('/book').get(myJson.getBooks)
     app.route('/book/:id').get(myJson.getBookById)
     app.route('/book').post(myJson.postBook)
+    app.route('/book/:id').put(myJson.putBook)
 }

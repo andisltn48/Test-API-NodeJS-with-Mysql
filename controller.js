@@ -45,3 +45,20 @@ exports.postBook = function (req,res) {
         }
     });
 }
+
+//edit book by id
+exports.putBook = function (req,res) {
+    let id = req.params.id;
+    let book_name = req.body.book_name;
+    let book_author = req.body.book_author;
+    let book_publisher = req.body.book_publisher;
+    
+    connection.query('UPDATE book SET book_name=?, book_author=?, book_publisher=? WHERE book_id=?',
+    [book_name,book_author,book_publisher,id], function (error, rows, fields) {
+        if (error){
+            console.log(error);
+        } else {
+            response.ok("Update data successfully",res);
+        }
+    });
+}
