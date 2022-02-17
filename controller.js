@@ -24,6 +24,8 @@ exports.getBookById = function (req,res) {
     connection.query('SELECT * FROM book WHERE book_id = ?', [id], function (error, rows, fields) {
         if (error){
             console.log(error);
+        } else if(rows.length == 0) {
+            response.notFound(rows,res);
         } else {
             response.ok(rows,res);
         }
@@ -59,6 +61,19 @@ exports.putBook = function (req,res) {
             console.log(error);
         } else {
             response.ok("Update data successfully",res);
+        }
+    });
+}
+
+//delete book
+exports.deleteBook = function (req,res) {
+    let id = req.params.id;
+
+    connection.query('DELETE FROM book WHERE book_id = ?', [id], function (error,rows,fields) {
+        if (error){
+            console.log(error);
+        } else {
+            response.ok("Delete data successfully",res);
         }
     });
 }
