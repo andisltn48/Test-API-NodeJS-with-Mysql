@@ -9,4 +9,5 @@ module.exports = function (app) {
     app.route('/book').post(myJson.postBook)
     app.route('/book/:id').put(myJson.putBook)
     app.route('/book/:id').delete(myJson.deleteBook)
+    app.route('/user-with-book').get(myJson.getUserWithBooks)
 }

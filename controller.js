@@ -77,3 +77,15 @@ exports.deleteBook = function (req,res) {
         }
     });
 }
+
+//get user with buku yang dipinjam
+exports.getUserWithBooks = function (req,res) {
+    connection.query('SELECT book.book_name,book.book_author,book.book_publisher,user.user_name,user.user_phone,user.user_address,user.user_id FROM `item` JOIN book JOIN user WHERE item.book_id_selected = book.book_id AND item.user_id_selected = user.user_id ORDER BY user.user_id',
+    function (error,rows,fields) {
+        if (error){
+            console.log(error);
+        } else {
+            response.okUserWithBooks(rows,res);
+        }
+    });
+}
